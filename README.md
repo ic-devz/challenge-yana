@@ -6,7 +6,13 @@
 `docker-compose up -d`
 
 ### Consola
-` docker-compose exec challenge-yana /bin/bash`
+` docker-compose exec api /bin/bash`
 
 ### Test
 `vendor/bin/phpunit test/Unit`
+
+### TODO
+~~* Dependency Injection or Factories~~
+* Contrete Class
+* Implement database
+* Create Models

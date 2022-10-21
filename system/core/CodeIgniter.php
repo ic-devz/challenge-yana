@@ -170,8 +170,8 @@ if ( ! is_php('5.4'))
 	{
 		if ($composer_autoload === TRUE)
 		{
-			file_exists(APPPATH.'vendor/autoload.php')
-				? require_once(APPPATH.'vendor/autoload.php')
+			file_exists(APPPATH.'../vendor/autoload.php')
+				? require_once(APPPATH.'../vendor/autoload.php')
 				: log_message('error', '$config[\'composer_autoload\'] is set to TRUE but '.APPPATH.'vendor/autoload.php was not found.');
 		}
 		elseif (file_exists($composer_autoload))
@@ -515,8 +515,9 @@ if ( ! is_php('5.4'))
  */
 	// Mark a start point so we can benchmark the controller
 	$BM->mark('controller_execution_time_( '.$class.' / '.$method.' )_start');
-
-	$CI = new $class();
+	$ioc = new \Illuminate\Container\Container();
+	$ioc->bind(\Yana\Auth\Domain\AuthStrategy::class, \Unit\Auth\FakeAuthLoginStrategy::class);
+	$CI = $ioc->build($class);
 
 /*
  * ------------------------------------------------------

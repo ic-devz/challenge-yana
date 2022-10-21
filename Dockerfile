@@ -21,7 +21,7 @@ RUN apt-get install apache2 php${PHP_VR} zip unzip curl nano -y
 RUN apt-get install php${PHP_VR}-mysql php${PHP_VR}-gmp php${PHP_VR}-zip php${PHP_VR}-curl php${PHP_VR}-gd php${PHP_VR}-bcmath php${PHP_VR}-mbstring php${PHP_VR}-xml php${PHP_VR}-soap php${PHP_VR}-imagick php${PHP_VR}-redis php${PHP_VR}-cli -y
 
 # APACHE CONFIGURATION
-ENV APACHE_DOCUMENT_ROOT /var/www/html/public
+ENV APACHE_DOCUMENT_ROOT /var/www/html
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
 RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
 
