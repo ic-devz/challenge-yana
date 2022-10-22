@@ -36,6 +36,14 @@
  * @since	Version 1.0.0
  * @filesource
  */
+
+use Yana\Auth\Domain\AuthStrategy;
+use Yana\Auth\Domain\PasswordEncryptor;
+use Yana\Auth\Infrastructure\DbLogin\AuthDatabaseLoginStrategy;
+use Yana\Auth\Infrastructure\PasswordEncryptor\Base64PasswordEncryptor;
+use Yana\User\Domain\UserRepository;
+use Yana\User\Infrastructure\QueryBuilderUserRepository;
+
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
@@ -515,8 +523,11 @@ if ( ! is_php('5.4'))
  */
 	// Mark a start point so we can benchmark the controller
 	$BM->mark('controller_execution_time_( '.$class.' / '.$method.' )_start');
+
 	$ioc = new \Illuminate\Container\Container();
-	$ioc->bind(\Yana\Auth\Domain\AuthStrategy::class, \Unit\Auth\FakeAuthLoginStrategy::class);
+	$ioc->bind(AuthStrategy::class, AuthDatabaseLoginStrategy::class);
+	$ioc->bind(PasswordEncryptor::class, Base64PasswordEncryptor::class);
+	$ioc->bind(UserRepository::class, QueryBuilderUserRepository::class);
 	$CI = $ioc->build($class);
 
 /*

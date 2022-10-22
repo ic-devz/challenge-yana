@@ -10,8 +10,14 @@ use Yana\Auth\Domain\UserLoginDto;
 
 class AuthService
 {
-	public function login(AuthStrategy $authStrategy, UserLoginDto $userLoginDto): Auth
+	private AuthStrategy $authStrategy;
+	public function __construct(AuthStrategy $authStrategy)
 	{
-		return $authStrategy->validate($userLoginDto);
+		$this->authStrategy = $authStrategy;
+	}
+
+	public function login(UserLoginDto $userLoginDto): Auth
+	{
+		return $this->authStrategy->validate($userLoginDto);
 	}
 }
