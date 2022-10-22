@@ -23,7 +23,7 @@ services:
     cap_add:
       - SYS_NICE  # CAP_SYS_NICE
     environment:
-      MYSQL_DATABASE: redgirasol
+      MYSQL_DATABASE: yana
       MYSQL_USER: admin
       MYSQL_ROOT_PASSWORD: "123456789..."
       MYSQL_PASSWORD: "admin123#"
