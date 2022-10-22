@@ -13,7 +13,7 @@ class AuthTest extends TestCase
 	public function testAnUserCanDoLogin()
 	{
 		$this->expectException(AuthException::class);
-		$authService = new AuthService(new FakeAuthLoginStrategy(),);
+		$authService = new AuthService(new FakeAuthLoginStrategy());
 		$authService->login(
 			new UserLoginDto(
 				'ichavez9001@gmail.com',
