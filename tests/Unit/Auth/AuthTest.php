@@ -5,19 +5,20 @@ namespace Unit\Auth;
 
 use PHPUnit\Framework\TestCase;
 use Yana\Auth\Application\Services\AuthService;
-use Yana\Auth\Domain\Auth;
 use Yana\Auth\Domain\AuthException;
-use Yana\Auth\Domain\AuthLoginBase;
+use Yana\Auth\Domain\UserLoginDto;
 
 class AuthTest extends TestCase
 {
 	public function testAnUserCanDoLogin()
 	{
 		$this->expectException(AuthException::class);
-		$authService = new AuthService();
+		$authService = new AuthService(new FakeAuthLoginStrategy(),);
 		$authService->login(
-			new FakeAuthLoginStrategy(),
-			new AuthLoginBase('ichavez9001@gmail.com', '123456789.')
+			new UserLoginDto(
+				'ichavez9001@gmail.com',
+				'123456789.'
+			)
 		);
 	}
 }
