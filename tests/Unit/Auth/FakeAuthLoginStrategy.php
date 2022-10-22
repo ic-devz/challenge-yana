@@ -19,4 +19,9 @@ class FakeAuthLoginStrategy implements AuthStrategy
 	{
 		throw new AuthException("This Login Strategy is invalid");
 	}
+
+	public function register(UserLoginDto $authDto): Auth
+	{
+		// TODO: Implement register() method.
+	}
 }
