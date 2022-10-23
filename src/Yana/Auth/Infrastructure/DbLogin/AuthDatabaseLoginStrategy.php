@@ -8,6 +8,7 @@ use Yana\Auth\Domain\AuthException;
 use Yana\Auth\Domain\AuthStrategy;
 use Yana\Auth\Domain\PasswordEncryptor;
 use Yana\Auth\Domain\UserLoginDto;
+use Yana\Auth\Domain\UserRegisterDto;
 use Yana\User\Application\Services\UserService;
 
 class AuthDatabaseLoginStrategy implements AuthStrategy
@@ -40,8 +41,22 @@ class AuthDatabaseLoginStrategy implements AuthStrategy
 		return new Auth($user);
 	}
 
-	public function register(UserLoginDto $authDto): Auth
+	/**
+	 * @param UserRegisterDto $userRegisterDto
+	 * @return Auth
+	 * @throws AuthException
+	 */
+	public function register(UserRegisterDto $userRegisterDto): Auth
 	{
-		// TODO: Implement register() method.
+		$user = $this->userService->findByEmail($userRegisterDto->email());
+		if ($user !== null) {
+			throw new AuthException("The user already exists");
+		}
+		$user = $this->userService->create(
+			$userRegisterDto->email(),
+			$this->passwordEncryptor->encrypt($userRegisterDto->password()),
+		);
+
+		return new Auth($user);
 	}
 }

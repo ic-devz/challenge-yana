@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Yana\User\Domain;
 
-abstract class UserDto
+class UserDto
 {
 	private string $email;
 	private string $password;
