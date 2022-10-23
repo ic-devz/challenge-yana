@@ -13,6 +13,17 @@
 
 ### TODO
 ~~* Dependency Injection or Factories~~
-* Contrete Class
-* Implement database
-* Create Models
+~~* Contrete Classes~~
+~~* Implement database~~
+* Feature Test
+
+## Principles
+
+* SOLID
+* KISS
+* DRY
+
+# Architecture
+* Hexagon Architecture
+* DDD
+* TDD

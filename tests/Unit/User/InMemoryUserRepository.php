@@ -24,4 +24,14 @@ class InMemoryUserRepository implements UserRepository
 			$userDto->password()
 		);
 	}
+
+	public function findActivitiesByUserId(int $userId): array
+	{
+		// TODO: Implement findActivitiesByUserId() method.
+	}
+
+	public function findById(int $userId): ?User
+	{
+		// TODO: Implement findById() method.
+	}
 }
