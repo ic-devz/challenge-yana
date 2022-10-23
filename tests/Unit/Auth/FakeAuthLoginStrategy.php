@@ -7,6 +7,7 @@ use Yana\Auth\Domain\Auth;
 use Yana\Auth\Domain\AuthException;
 use Yana\Auth\Domain\AuthStrategy;
 use Yana\Auth\Domain\UserLoginDto;
+use Yana\Auth\Domain\UserRegisterDto;
 
 class FakeAuthLoginStrategy implements AuthStrategy
 {
@@ -20,7 +21,7 @@ class FakeAuthLoginStrategy implements AuthStrategy
 		throw new AuthException("This Login Strategy is invalid");
 	}
 
-	public function register(UserLoginDto $authDto): Auth
+	public function register(UserRegisterDto $userRegisterDto): Auth
 	{
 		// TODO: Implement register() method.
 	}
